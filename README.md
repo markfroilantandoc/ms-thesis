@@ -1,5 +1,5 @@
 # ms-thesis
 
-** external sofware
-   - [[http://www.diku.dk/~martinz/geosteiner/][GeoSteiner]]
-   - [[https://www.epa.gov/water-research/epanet][EPANET]]
+## external sofware
+- [GeoSteiner](http://www.diku.dk/~martinz/geosteiner)
+- [EPANET](https://www.epa.gov/water-research/epanet)
