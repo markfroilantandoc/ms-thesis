@@ -1,0 +1,100 @@
+\documentclass{style/icsthesis}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{xfrac}
+
+\renewcommand{\TITLE}{DESIGN OPTIMIZATION OF WATER DISTRIBUTION NETWORKS}
+\renewcommand{\AUTHOR}{MARK FROILAN B. TANDOC}
+\renewcommand{\DEGREE}{MASTER OF SCIENCE}
+\renewcommand{\MAJOR}{COMPUTER SCIENCE}
+\renewcommand{\MONTH}{NOVEMBER}
+\renewcommand{\YEAR}{2015}
+
+\pretolerance=1000
+
+\begin{document}
+
+    \begin{frontmatter}
+    \iffalse
+		%create title
+		\maketitle
+        
+		\begin{approvalpage}
+			The thesis hereto attached entitled \TITLE , prepared and submitted by \AUTHOR , in partial fulfillment of the requirements for the degree of \DEGREE\ (\MAJOR) is hereby accepted.
+			
+			\begin{multicols}{2}
+				\centering
+				\addsignature{JADERICK P. PABICO}{Member, Guidance Committee} %custom command for adding signature field
+				\columnbreak
+				\addsignature{CONCEPTION L. KHAN}{Member, Guidance Committee}
+			\end{multicols}
+			\addsignature{JAIME M. SAMANIEGO}{Chair, Guidance Committee}
+			
+			Accepted as partial fulfillment of the requirements for the degree of \DEGREE\ (\MAJOR). 
+			\addsignature{JAIME M. SAMANIEGO}{Director, Institute of Computer Science}
+			\addsignature{JOSE V. CAMACHO}{Dean, Graduate School\\University of the Mars Los Ba\~{n}os}
+		\end{approvalpage}
+		
+		\begin{biosketch}
+			
+			% MUST NOT EXCEED ONE PAGE.		
+			
+			\addauthorsignaturefield
+		\end{biosketch}	
+		
+		%acknowledgement
+		\begin{acknowledgement}
+		
+			% MUST NOT EXCEED ONE PAGE.
+			
+		\end{acknowledgement}
+		
+		%TOC
+		\maketableofcontents
+		
+		%LOT
+		\makelistoftables
+
+		%LOF
+		\makelistoffigures
+	\fi
+	    \begin{center}
+	    University of the Philippines Los Ba\~{n}os\\
+	    Graduate School\\
+	    Institute of Computer Science\\
+	    \vspace*{25ex}
+	    \textbf{Design Optimization of Water Distribution Networks}\\
+	    \vspace*{25ex}
+	    A Masters Thesis Proposal\\
+	    For partial fulfillment of the requirements in CMSC 300\\
+	    \vspace*{10ex}
+	    Mark Froilan B. Tandoc\\
+	    \vspace*{8ex}
+	    Jaime M. Samaniego\\
+	    Adviser
+	    \end{center}
+	    
+		%ABSTRACT
+		\begin{abstractwithpageno}
+
+			\input{tex/abstract}
+			
+		\end{abstractwithpageno}
+
+	\end{frontmatter}
+
+	\begin{mainmatter}
+	
+		\input{tex/introduction}
+        \input{tex/review_of_literature}
+        \input{tex/methodology}
+        
+        \makereferences{references}
+		
+	\end{mainmatter}
+
+\end{document}

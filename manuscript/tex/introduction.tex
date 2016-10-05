@@ -1,0 +1,15 @@
+\section{Introduction}
+\subsection{Background of the Problem}
+Water distribution system are used to supply water to different consumers. It is composed of several hydraulic components such as pipes, pumps, valves, and reservoirs. They can be used for different purposes, including irrigation, reclaimed water distribution, waste water disposal, etc. Optimal systems are beneficial especially to rural areas where there is a need for cost-savings. Designing such systems involves placement of pipes and selection of appropriate sizes and specifications of its components. There are already a lot of studies that dealt with optimizing water distribution systems, however, many of these work with the layout already predetermined \citep{Goncalves2000,Lee1984,Lejano2006}. When designing the layout, on the other hand, it is best to consider all decisions simultaneously \citep{Goncalves2000,Lee1984}.
+
+Pipeline networks typically consist of connected source and demand nodes. Between these nodes, there may exist junction nodes that can help shorten the network. The Minimum Spanning Tree (MST) algorithms are good greedy approach to approximate an optimal design. The addition of junction nodes made the problem more of a Euclidean Steiner Tree problem where so called Steiner points can be optionally added to the graph to reduce the length of the network.
+
+The Euclidean Steiner tree problem (ESTP) asks for a network with minimum total length connecting all given points in Euclidean space with the option to add extra points (Steiner points) to reduce the overall length of the network. The ESTP is a difficult combinatorial optimization problem and is NP-hard as cited in \cite{Brazil2014}.
+
+\subsection{Objectives of the Study}
+This paper generally aims to find layouts to water distribution pipeline networks. Specifically, this paper aims to
+\begin{enumerate}
+\item find layouts to water distribution pipeline network by dividing the problem into two subproblems - finding optimal locations of junction nodes, then finding optimal pipe sizes for the links;
+\item find layouts to water distribution pipeline network by simultaneously considering junction placements and pipe sizes;
+\item Compare results of simultaneously considering junction node placements and pipe sizes versus the separate approach.
+\end{enumerate}
