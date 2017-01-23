@@ -1,7 +1,7 @@
 TARGET = waternetworks
 
 GEO_PATH = ./geosteiner
-GEOLIB = $(GEO_PATH)/memory.o -lgeosteiner $(GEO_PATH)/libLPS.a
+GEOLIB = $(GEO_PATH)/memory.o -L${GEO_PATH} -lgeosteiner $(GEO_PATH)/libLPS.a
 
 EPA_PATH = ./epanet
 EPALIB = $(EPA_PATH)/libtoolkit.a
