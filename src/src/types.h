@@ -1,10 +1,10 @@
 typedef struct {
-    double x;
-    double y;
-    double elevation;
+    float x;
+    float y;
+    float elevation;
 } node;
 
 typedef struct {
-    double length;
-    double diameter;
+    float length;
+    float diameter;
 } pipe;
