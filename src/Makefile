@@ -1,18 +1,20 @@
-TARGET = waternetworks
+OBJECT_PATH = obj
+SOURCE_PATH = src
+EPANET_PATH = ext/epanet
+GEOSTEINER_PATH = ext/geosteiner
+LP_PATH = ext/lp_solve
 
-GEO_PATH = ./geosteiner
-LP_PATH = ./lp_solve
-GEOLIB = $(GEO_PATH)/memory.o -L${GEO_PATH} -lgeosteiner $(LP_PATH)/libLPS.a
+OBJS = $(OBJECT_PATH)/main.o
+CC = gcc
+DEBUG = -g
+CFLAGS = -c -Iext
+LFLAGS = $(EPANET_PATH)/libtoolkit.a -lm -o waternetworks
 
-EPA_PATH = ./epanet
-EPALIB = $(EPA_PATH)/libtoolkit.a
+all: $(OBJS)
+	$(CC) $(OBJS) $(LFLAGS)
 
-all: $(TARGET).c randompoints
-	gcc -o $(TARGET) $(TARGET).c $(GEOLIB) $(EPALIB) -lm
-	
-randompoints: randompoints.c
-	gcc -o randompoints randompoints.c $(GEOLIB) -lm
+$(OBJECT_PATH)/main.o: $(SOURCE_PATH)/main.c $(SOURCE_PATH)/main.h
+	$(CC) $(CFLAGS) -o $(OBJECT_PATH)/main.o $(SOURCE_PATH)/main.c
 
 clean:
-	rm $(TARGET)
-	
+	rm $(OBJECT_PATH)/* waternetworks
