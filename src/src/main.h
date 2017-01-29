@@ -1,4 +1,5 @@
-#include "epanet/toolkit.h"
+#include "../ext/epanet/toolkit.h"
+#include "../ext/geosteiner/geosteiner.h"
 
 #include <stdio.h>
 #include <stdlib.h>

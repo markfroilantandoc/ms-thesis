@@ -24,6 +24,11 @@ int main (int argc, char* argv[]) {
     }
 
     // Compute Steiner tree
+    if(gst_open_geosteiner() != 0){
+		printf("Could not open GeoSteiner\n");
+		exit(1);
+	}
+    gst_close_geosteiner();
 
     // Compute feasibility of network
 
