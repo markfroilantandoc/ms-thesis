@@ -4,7 +4,7 @@ EPANET_PATH = ./ext/epanet
 GEOSTEINER_PATH = ./ext/geosteiner
 LP_PATH = ./ext/lp_solve
 
-OBJS = $(OBJECT_PATH)/main.o $(OBJECT_PATH)/geosteinerWrapper.o
+OBJS = $(OBJECT_PATH)/main.o $(OBJECT_PATH)/geosteinerWrapper.o $(OBJECT_PATH)/epanetWrapper.o
 CC = gcc
 DEBUG = -g
 CFLAGS = -c
@@ -21,6 +21,9 @@ $(OBJECT_PATH)/main.o: $(SOURCE_PATH)/main.c $(SOURCE_PATH)/main.h
 
 $(OBJECT_PATH)/geosteinerWrapper.o: $(SOURCE_PATH)/geosteinerWrapper.c $(SOURCE_PATH)/geosteinerWrapper.h
 	$(CC) $(CFLAGS) -o $(OBJECT_PATH)/geosteinerWrapper.o $(SOURCE_PATH)/geosteinerWrapper.c
+
+$(OBJECT_PATH)/epanetWrapper.o: $(SOURCE_PATH)/epanetWrapper.c $(SOURCE_PATH)/epanetWrapper.h
+	$(CC) $(CFLAGS) -o $(OBJECT_PATH)/epanetWrapper.o $(SOURCE_PATH)/epanetWrapper.c
 
 clean:
 	rm $(OBJECT_PATH)/* waternetworks

@@ -31,10 +31,6 @@ int main (int argc, char* argv[]) {
 
     esmt(num_terminals, terminals);
 
-    // Try Epanet library
-    ENopen ("", "", "");
-    ENclose();
-
     return 0;
 
 }
