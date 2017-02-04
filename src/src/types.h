@@ -1,10 +1,13 @@
+#ifndef _types_
+#define _types_
 typedef struct {
-    float x;
-    float y;
-    float elevation;
+    double x;
+    double y;
+    double elevation;
 } node;
 
 typedef struct {
-    float length;
-    float diameter;
+    double length;
+    double diameter;
 } pipe;
+#endif

@@ -4,8 +4,9 @@ int main (int argc, char* argv[]) {
 
     FILE *fp;
     int i;
-    float tempx, tempy;
+    double tempx, tempy;
     int num_terminals;
+    node *terminals;
 
     if (argc < 2) {
         return 1;
@@ -18,20 +19,17 @@ int main (int argc, char* argv[]) {
 
     // Scan terminals
     fscanf(fp, "%d\n", &num_terminals);
-    printf("%d\n", num_terminals);
+    terminals = (node *)malloc(num_terminals * sizeof(node));
+
     for (i=0; i<num_terminals; i++) {
-        fscanf(fp, "%f %f\n", &tempx, &tempy);
-        printf("%f %f\n", tempx, tempy);
+        fscanf(fp, "%lf %lf\n", &tempx, &tempy);
+        terminals[i].x = tempx;
+        terminals[i].y = tempy;
     }
 
     fclose(fp);
 
-    // Try GeoSteiner library
-    if(gst_open_geosteiner() != 0){
-		printf("Could not open GeoSteiner\n");
-		exit(1);
-	}
-    gst_close_geosteiner();
+    esmt(num_terminals, terminals);
 
     // Try Epanet library
     ENopen ("", "", "");
