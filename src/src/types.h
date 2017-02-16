@@ -7,6 +7,8 @@ typedef struct {
 } node;
 
 typedef struct {
+    int n1;
+    int n2;
     double length;
     double diameter;
 } pipe;

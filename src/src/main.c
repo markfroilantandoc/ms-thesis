@@ -5,8 +5,8 @@ int main (int argc, char* argv[]) {
     FILE *fp = NULL;
     int i=0;
     double tempx=0, tempy=0;
-    int num_terminals=0, network_size=0;
-    node *terminals = NULL, *network = NULL;
+    int num_terminals=0, node_count=0, pipe_count=0;
+    node *terminals = NULL, *network_nodes = NULL;
     pipe *network_pipes = NULL;
 
     if (argc < 2) {
@@ -29,19 +29,27 @@ int main (int argc, char* argv[]) {
     fclose(fp);
 
     // Compute Euclidean Steiner Minimal Tree using Geosteiner
-    network_size = esmt(num_terminals, terminals, &network);
+    esmt(num_terminals, terminals, &node_count, &network_nodes, &pipe_count, &network_pipes);
 
     // Debug
-    for (i=0; i<network_size; i++) {
-        printf("%lf %lf\n", network[i].x, network[i].y);
+    printf("Nodes\n");
+    for (i=0; i<node_count; i++) {
+        printf("%lf %lf\n", network_nodes[i].x, network_nodes[i].y);
+    }
+    printf("Pipes\n");
+    for (i=0; i<pipe_count; i++) {
+        printf("%d %d\n", network_pipes[i].n1, network_pipes[i].n2);
     }
 
     // Cleanup
     if (terminals != NULL) {
         free(terminals);
     }
-    if (network != NULL) {
-        free(network);
+    if (network_nodes != NULL) {
+        free(network_nodes);
+    }
+    if (network_pipes != NULL) {
+        free(network_pipes);
     }
 
     return 0;
