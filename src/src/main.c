@@ -38,7 +38,7 @@ int main (int argc, char* argv[]) {
     }
     printf("Pipes\n");
     for (i=0; i<pipe_count; i++) {
-        printf("%d %d\n", network_pipes[i].n1, network_pipes[i].n2);
+        printf("%d %d %lf\n", network_pipes[i].n1, network_pipes[i].n2, network_pipes[i].length);
     }
 
     // Cleanup

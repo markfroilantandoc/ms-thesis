@@ -1,5 +1,6 @@
 #include "types.h"
 #include "../ext/geosteiner/geosteiner.h"
+#include "mathUtil.h"
 #include <stdlib.h>
 
 static void initArrays(int num_terminals, double **terminals, double **steiner_points, int **edges);

@@ -63,6 +63,7 @@ double esmt(int num_terminals, node *terminals,
     for (i=0; i<_num_edges; i++) {
         (*network_pipes)[i].n1 = _edges[2*i];
         (*network_pipes)[i].n2 = _edges[2*i+1];
+        (*network_pipes)[i].length = getDistance((*network_nodes)[_edges[2*i]], (*network_nodes)[_edges[2*i+1]]);
     }
     
     // Cleanup
