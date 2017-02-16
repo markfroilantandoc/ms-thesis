@@ -43,15 +43,23 @@ void print_graph(int num_terminals, double *terminals,
 	
 }
 
-void esmt(int num_terminals, node *terminals) {
+int esmt(int num_terminals, node *terminals, node **network) {
 
     int _num_terminals, _num_steiner_points, _num_edges;
     int *_edges;
     double _steiner_tree_length;
     double *_terminals, *_steiner_points;
+	int i, j;
 
+	// Initializations
     _num_terminals = num_terminals;
     initArrays(_num_terminals, &_terminals, &_steiner_points, &_edges);
+	for (i=0; i<_num_terminals; i++) {
+		_terminals[2*i] = terminals[i].x;
+		_terminals[2*i+1] = terminals[i].y;
+	}
+
+	// Compute euclidean steiner minimal tree
     if(gst_open_geosteiner() != 0){
         printf("Could not open GeoSteiner\n");
         exit(1);
@@ -60,9 +68,25 @@ void esmt(int num_terminals, node *terminals) {
                 &_num_steiner_points, _steiner_points, 
                 &_num_edges, _edges, NULL, NULL);
     gst_close_geosteiner();
-    	print_graph(_num_terminals, _terminals,
-				_num_steiner_points, _steiner_points,
-				_num_edges, _edges);
+
+	// Copy to output variables
+	*network = (node *)malloc((_num_terminals + _num_steiner_points) * sizeof(node));
+	j=0;
+	for (i=0; i<_num_terminals; i++) {
+		(*network)[j].x = _terminals[2*i];
+		(*network)[j].y = _terminals[2*i+1];
+		j++;
+	}
+	for (i=0; i<_num_steiner_points; i++) {
+		(*network)[j].x = _steiner_points[2*i];
+		(*network)[j].y = _steiner_points[2*i+1];
+		j++;
+	}
+	
+	// Cleanup
     freeArrays(&_terminals, &_steiner_points, &_edges);
+
+	// Return size of network
+	return _num_terminals + _num_steiner_points;
 
 }
