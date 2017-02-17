@@ -52,6 +52,7 @@ double esmt(int num_terminals, node *terminals,
         (*network_nodes)[j].x = _terminals[2*i];
         (*network_nodes)[j].y = _terminals[2*i+1];
         (*network_nodes)[j].elevation = terminals[i].elevation;
+        (*network_nodes)[j].flow = terminals[i].flow;
         j++;
     }
     for (i=0; i<_num_steiner_points; i++) {

@@ -4,6 +4,7 @@ typedef struct {
     double x;
     double y;
     double elevation;
+    double flow;
 } node;
 
 typedef struct {
@@ -11,5 +12,6 @@ typedef struct {
     int n2;
     double length;
     double diameter;
+    double flow;
 } pipe;
 #endif
