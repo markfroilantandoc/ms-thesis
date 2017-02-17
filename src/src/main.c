@@ -22,9 +22,7 @@ int main (int argc, char* argv[]) {
     fscanf(fp, "%d\n", &num_terminals);
     terminals = (node *)malloc(num_terminals * sizeof(node));
     for (i=0; i<num_terminals; i++) {
-        fscanf(fp, "%lf %lf\n", &tempx, &tempy);
-        terminals[i].x = tempx;
-        terminals[i].y = tempy;
+        fscanf(fp, "%lf %lf %lf\n", &(terminals[i].x), &(terminals[i].y), &(terminals[i].elevation));
     }
     fclose(fp);
 

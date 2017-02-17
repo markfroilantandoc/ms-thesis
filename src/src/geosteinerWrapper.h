@@ -3,6 +3,9 @@
 #include "mathUtil.h"
 #include <stdlib.h>
 
+static const double _default_elevation = 0;
+static const double _default_diameter = 5;
+
 static void initArrays(int num_terminals, double **terminals, double **steiner_points, int **edges);
 static void freeArrays(double **terminals, double **steiner_points, int **edges);
 double esmt(int num_terminals, node *terminals, 

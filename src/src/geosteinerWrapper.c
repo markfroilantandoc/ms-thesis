@@ -51,11 +51,13 @@ double esmt(int num_terminals, node *terminals,
     for (i=0; i<_num_terminals; i++) {
         (*network_nodes)[j].x = _terminals[2*i];
         (*network_nodes)[j].y = _terminals[2*i+1];
+        (*network_nodes)[j].elevation = terminals[i].elevation;
         j++;
     }
     for (i=0; i<_num_steiner_points; i++) {
         (*network_nodes)[j].x = _steiner_points[2*i];
         (*network_nodes)[j].y = _steiner_points[2*i+1];
+        (*network_nodes)[j].elevation = _default_elevation;
         j++;
     }
     *pipe_count = _num_edges;
@@ -64,6 +66,7 @@ double esmt(int num_terminals, node *terminals,
         (*network_pipes)[i].n1 = _edges[2*i];
         (*network_pipes)[i].n2 = _edges[2*i+1];
         (*network_pipes)[i].length = getDistance((*network_nodes)[_edges[2*i]], (*network_nodes)[_edges[2*i+1]]);
+        (*network_pipes)[i].diameter = _default_diameter;
     }
     
     // Cleanup
