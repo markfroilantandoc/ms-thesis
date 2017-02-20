@@ -10,6 +10,8 @@ int main (int argc, char* argv[]) {
     pipe *network_pipes = NULL;
     int **adjacency_matrix = NULL;
 
+    int *uninitialized_pipes;
+
     if (argc < 2) {
         return 1;
     }
@@ -38,6 +40,11 @@ int main (int argc, char* argv[]) {
         adjacency_matrix[network_pipes[i].n1][network_pipes[i].n2] = 1;
         adjacency_matrix[network_pipes[i].n2][network_pipes[i].n1] = 1;
     }
+    // Compute flow values for pipes
+    uninitialized_pipes = (int *)malloc(pipe_count * sizeof(int));
+    for (i=0; i<pipe_count; i++) {
+        uninitialized_pipes[i] = 1;
+    }
 
     // Debug
     printf("Nodes\n");
@@ -50,6 +57,9 @@ int main (int argc, char* argv[]) {
     }
 
     // Cleanup
+    if (uninitialized_pipes != NULL) {
+        free(uninitialized_pipes);
+    }
     if (adjacency_matrix != NULL) {
         for (i=0; i<node_count; i++) {
             free(adjacency_matrix[i]);
