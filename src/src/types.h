@@ -14,4 +14,11 @@ typedef struct {
     double diameter;
     double flow;
 } pipe;
+
+typedef struct {
+    int node_count;
+    node *junctions;
+    int pipe_count;
+    pipe *links;
+} network;
 #endif

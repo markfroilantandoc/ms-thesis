@@ -5,12 +5,10 @@ int main (int argc, char* argv[]) {
     FILE *fp = NULL;
     int i=0, j=0;
 
-    int num_terminals=0, node_count=0, pipe_count=0;
-    node *terminals = NULL, *network_nodes = NULL;
-    pipe *network_pipes = NULL;
+    int num_terminals=0;
+    node *terminals = NULL;
+    network waterNetwork;
     int **adjacency_matrix = NULL;
-
-    int *uninitialized_pipes;
 
     if (argc < 2) {
         return 1;
@@ -30,38 +28,32 @@ int main (int argc, char* argv[]) {
     fclose(fp);
 
     // Compute Euclidean Steiner Minimal Tree using Geosteiner
-    esmt(num_terminals, terminals, &node_count, &network_nodes, &pipe_count, &network_pipes);
+    esmt(num_terminals, terminals, &waterNetwork);
     // Generate adjacency_matrix
-    adjacency_matrix = (int **)malloc(node_count * sizeof(int *));
-    for (i=0; i<node_count; i++) {
-        adjacency_matrix[i] = (int *)malloc(node_count * sizeof(int));
+    adjacency_matrix = (int **)malloc(waterNetwork.node_count * sizeof(int *));
+    for (i=0; i<waterNetwork.node_count; i++) {
+        adjacency_matrix[i] = (int *)malloc(waterNetwork.node_count * sizeof(int));
     }
-    for (i=0; i<pipe_count; i++) {
-        adjacency_matrix[network_pipes[i].n1][network_pipes[i].n2] = 1;
-        adjacency_matrix[network_pipes[i].n2][network_pipes[i].n1] = 1;
+    for (i=0; i<waterNetwork.pipe_count; i++) {
+        adjacency_matrix[waterNetwork.links[i].n1][waterNetwork.links[i].n2] = 1;
+        adjacency_matrix[waterNetwork.links[i].n2][waterNetwork.links[i].n1] = 1;
     }
-    // Compute flow values for pipes
-    uninitialized_pipes = (int *)malloc(pipe_count * sizeof(int));
-    for (i=0; i<pipe_count; i++) {
-        uninitialized_pipes[i] = 1;
-    }
+    // Compute pipe flows
+    computeFlow(&waterNetwork, adjacency_matrix);
 
     // Debug
     printf("Nodes\n");
-    for (i=0; i<node_count; i++) {
-        printf("%lf %lf\n", network_nodes[i].x, network_nodes[i].y);
+    for (i=0; i<waterNetwork.node_count; i++) {
+        printf("%lf %lf\n", waterNetwork.junctions[i].x, waterNetwork.junctions[i].y);
     }
     printf("Pipes\n");
-    for (i=0; i<pipe_count; i++) {
-        printf("%d %d %lf\n", network_pipes[i].n1, network_pipes[i].n2, network_pipes[i].length);
+    for (i=0; i<waterNetwork.pipe_count; i++) {
+        printf("%d %d %lf\n", waterNetwork.links[i].n1, waterNetwork.links[i].n2, waterNetwork.links[i].length);
     }
 
     // Cleanup
-    if (uninitialized_pipes != NULL) {
-        free(uninitialized_pipes);
-    }
     if (adjacency_matrix != NULL) {
-        for (i=0; i<node_count; i++) {
+        for (i=0; i<waterNetwork.node_count; i++) {
             free(adjacency_matrix[i]);
         }
         free(adjacency_matrix);
@@ -69,11 +61,11 @@ int main (int argc, char* argv[]) {
     if (terminals != NULL) {
         free(terminals);
     }
-    if (network_nodes != NULL) {
-        free(network_nodes);
+    if (waterNetwork.junctions != NULL) {
+        free(waterNetwork.junctions);
     }
-    if (network_pipes != NULL) {
-        free(network_pipes);
+    if (waterNetwork.links != NULL) {
+        free(waterNetwork.links);
     }
 
     return 0;
