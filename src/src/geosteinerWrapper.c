@@ -16,7 +16,7 @@ static void freeArrays(double **terminals, double **steiner_points, int **edges)
 
 }
 
-double esmt(int num_terminals, node *terminals, network *waterNetwork) {
+double esmt(int num_terminals, node *terminals, network *water_network) {
 
     int _num_terminals, _num_steiner_points, _num_edges;
     int *_edges;
@@ -43,31 +43,31 @@ double esmt(int num_terminals, node *terminals, network *waterNetwork) {
     gst_close_geosteiner();
 
     // Copy to output variables
-    waterNetwork->node_count = _num_terminals + _num_steiner_points;
-    waterNetwork->junctions = (node *)malloc((_num_terminals + _num_steiner_points) * sizeof(node));
+    water_network->node_count = _num_terminals + _num_steiner_points;
+    water_network->junctions = (node *)malloc((_num_terminals + _num_steiner_points) * sizeof(node));
     j=0;
     for (i=0; i<_num_terminals; i++) {
-        (waterNetwork->junctions)[j].x = _terminals[2*i];
-        (waterNetwork->junctions)[j].y = _terminals[2*i+1];
-        (waterNetwork->junctions)[j].elevation = terminals[i].elevation;
-        (waterNetwork->junctions)[j].flow = terminals[i].flow;
+        (water_network->junctions)[j].x = _terminals[2*i];
+        (water_network->junctions)[j].y = _terminals[2*i+1];
+        (water_network->junctions)[j].elevation = terminals[i].elevation;
+        (water_network->junctions)[j].flow = terminals[i].flow;
         j++;
     }
     for (i=0; i<_num_steiner_points; i++) {
-        (waterNetwork->junctions)[j].x = _steiner_points[2*i];
-        (waterNetwork->junctions)[j].y = _steiner_points[2*i+1];
-        (waterNetwork->junctions)[j].elevation = _default_elevation;
-        (waterNetwork->junctions)[j].flow = _default_flow;
+        (water_network->junctions)[j].x = _steiner_points[2*i];
+        (water_network->junctions)[j].y = _steiner_points[2*i+1];
+        (water_network->junctions)[j].elevation = _default_elevation;
+        (water_network->junctions)[j].flow = _default_flow;
         j++;
     }
-    waterNetwork->pipe_count = _num_edges;
-    waterNetwork->links = (pipe *)malloc(_num_edges * sizeof(pipe));
+    water_network->pipe_count = _num_edges;
+    water_network->links = (pipe *)malloc(_num_edges * sizeof(pipe));
     for (i=0; i<_num_edges; i++) {
-        (waterNetwork->links)[i].n1 = _edges[2*i];
-        (waterNetwork->links)[i].n2 = _edges[2*i+1];
-        (waterNetwork->links)[i].length = getDistance((waterNetwork->junctions)[_edges[2*i]], (waterNetwork->junctions)[_edges[2*i+1]]);
-        (waterNetwork->links)[i].diameter = _default_diameter;
-        (waterNetwork->links)[j].flow = _default_flow;
+        (water_network->links)[i].n1 = _edges[2*i];
+        (water_network->links)[i].n2 = _edges[2*i+1];
+        (water_network->links)[i].length = getDistance((water_network->junctions)[_edges[2*i]], (water_network->junctions)[_edges[2*i+1]]);
+        (water_network->links)[i].diameter = _default_diameter;
+        (water_network->links)[j].flow = _default_flow;
     }
     
     // Cleanup

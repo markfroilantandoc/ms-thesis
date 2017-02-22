@@ -9,4 +9,4 @@ static const double _default_flow = 0;
 
 static void initArrays(int num_terminals, double **terminals, double **steiner_points, int **edges);
 static void freeArrays(double **terminals, double **steiner_points, int **edges);
-double esmt(int num_terminals, node *terminals, network *waterNetwork);
+double esmt(int num_terminals, node *terminals, network *water_network);
