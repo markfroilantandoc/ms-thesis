@@ -39,7 +39,7 @@ int main (int argc, char* argv[]) {
         adjacency_matrix[water_network.links[i].n2][water_network.links[i].n1] = 1;
     }
     // Compute pipe flows
-    computeFlow(&water_network, adjacency_matrix);
+    computeFlowNew(&water_network, adjacency_matrix);
 
     // Debug
     printf("Nodes\n");

@@ -63,8 +63,13 @@ double esmt(int num_terminals, node *terminals, network *water_network) {
     water_network->pipe_count = _num_edges;
     water_network->links = (pipe *)malloc(_num_edges * sizeof(pipe));
     for (i=0; i<_num_edges; i++) {
-        (water_network->links)[i].n1 = _edges[2*i];
-        (water_network->links)[i].n2 = _edges[2*i+1];
+        if (_edges[2*i] < _edges[2*i+1]) {
+            (water_network->links)[i].n1 = _edges[2*i];
+            (water_network->links)[i].n2 = _edges[2*i+1];
+        } else {
+            (water_network->links)[i].n1 = _edges[2*i+1];
+            (water_network->links)[i].n2 = _edges[2*i];
+        }
         (water_network->links)[i].length = getDistance((water_network->junctions)[_edges[2*i]], (water_network->junctions)[_edges[2*i+1]]);
         (water_network->links)[i].diameter = _default_diameter;
         (water_network->links)[j].flow = _default_flow;
