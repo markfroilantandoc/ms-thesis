@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void static computeFlowDFS(int i, network *water_network, node *temp_junctions, int *visited, int **adjacency_matrix);
+static double computeFlowLink(int index1, int index2, network *water_network, int **adjacency_matrix, int *visited);
+// Computes flow of network.
+// Assumptions: only single source and source is node 0.
 void computeFlow(network *water_network, int **adjacency_matrix);
-double computeFlowLink(int index1, int index2, network *water_network, int **adjacency_matrix, int *visited);
-void computeFlowNew(network *water_network, int **adjacency_matrix);

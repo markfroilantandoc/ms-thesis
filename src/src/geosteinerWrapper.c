@@ -72,7 +72,7 @@ double esmt(int num_terminals, node *terminals, network *water_network) {
         }
         (water_network->links)[i].length = getDistance((water_network->junctions)[_edges[2*i]], (water_network->junctions)[_edges[2*i+1]]);
         (water_network->links)[i].diameter = _default_diameter;
-        (water_network->links)[j].flow = _default_flow;
+        (water_network->links)[i].flow = _default_flow;
     }
     
     // Cleanup
