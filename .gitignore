@@ -1,5 +1,5 @@
 # ignore compiled files
-src/obj/*
+src/obj/*.o
 waternetworks
 
 # ignore tests directory
